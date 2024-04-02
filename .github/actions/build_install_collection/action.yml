@@ -72,13 +72,13 @@ runs:
     - name: Install collection python requirements
       if: ${{ inputs.install_python_dependencies == 'true' }}
 
-    - name: Install collection python requirements
-      run: |
-        if ${{ matrix.python-version }} != ''; then
-          python${{ matrix.python-version }} -m pip install -r requirements.txt -r test-requirements.txt
-        else
-          python3 -m pip install -r requirements.txt -r test-requirements.txt
-        fi
+    - run: python${{ matrix.python-version }} -m pip install -r requirements.txt -r test-requirements.txt
+      if: ${{ matrix.python-version }} != ''
+      shell: bash
+      working-directory: ${{ inputs.source_path }}
+      
+    - run: python3 -m pip install -r requirements.txt -r test-requirements.txt
+      if: ${{ matrix.python-version }} != ''
       shell: bash
       working-directory: ${{ inputs.source_path }}
 
