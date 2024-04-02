@@ -71,8 +71,7 @@ runs:
 
     - name: Install collection python requirements
       if: ${{ inputs.install_python_dependencies == 'true' }}
-      
-    - run: |
+      run: |
         if ${{ matrix.python-version != ''}}; then
           sudo python${{ matrix.python-version }} -m pip install -r requirements.txt -r test-requirements.txt
         else
