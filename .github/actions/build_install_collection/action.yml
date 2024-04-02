@@ -68,7 +68,7 @@ runs:
       if: ${{ inputs.install_python_dependencies == 'true' }}
       run: |
         if ${{ matrix.python-version != ''}}; then
-          sudo python${{ matrix.python-version }} -m pip install -r requirements.txt -r test-requirements.txt
+          python${{ matrix.python-version }} -m pip install -r requirements.txt -r test-requirements.txt
         else
           python3 -m pip install -r requirements.txt -r test-requirements.txt
         fi
