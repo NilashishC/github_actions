@@ -55,6 +55,7 @@ runs:
           sudo python3 -m pip install bindep
         fi
       shell: bash
+      working-directory: ${{ inputs.source_path }}
       if: steps.bindep_check.outputs.file_exists == 'true'
 
     - name: Install missing system packages using bindep.txt
