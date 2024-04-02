@@ -48,14 +48,8 @@ runs:
       working-directory: ${{ inputs.source_path }}
 
     - name: Install bindep from pypi
-      run: |
-        if ${{ matrix.python-version != ''}}; then
-          sudo python${{ matrix.python-version }} -m pip install bindep
-        else
-          sudo python3 -m pip install bindep
-        fi
+      run: sudo python3 -m pip install bindep
       shell: bash
-      working-directory: ${{ inputs.source_path }}
       if: steps.bindep_check.outputs.file_exists == 'true'
 
     - name: Install missing system packages using bindep.txt
