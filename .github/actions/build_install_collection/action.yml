@@ -69,16 +69,16 @@ runs:
       working-directory: ${{ inputs.source_path }}
       if: steps.bindep_check.outputs.file_exists == 'true'
 
-    # - name: Install collection python requirements
-    #   if: ${{ inputs.install_python_dependencies == 'true' }}
+   - name: Install collection python requirements
+     if: ${{ inputs.install_python_dependencies == 'true' }}
 
     - run: python${{ matrix.python-version }} -m pip install -r requirements.txt -r test-requirements.txt
-      if: ${{ matrix.ansible-version == '' }}
+      if: ${{ matrix.ansible-version != '' }}
       shell: bash
       working-directory: ${{ inputs.source_path }}
       
     - run: python3 -m pip install -r requirements.txt -r test-requirements.txt
-      if: ${{ matrix.python-version != ''}}
+      if: ${{ matrix.python-version == ''}}
       shell: bash
       working-directory: ${{ inputs.source_path }}
 
